@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-705CF6.svg)](LICENSE)
 
-Echo is a private, offline dictation app for Windows and macOS. A global shortcut starts a small non-focus-stealing overlay, records the microphone, transcribes with local `whisper.cpp`, and inserts the result into the app that already owns the cursor.
+Echo is a private, offline dictation app for Windows and macOS - A Wispr Flow alternative. A global shortcut starts a small non-focus-stealing overlay, records the microphone, transcribes with local `whisper.cpp`, and inserts the result into the app that already owns the cursor.
 
 ## What works in this MVP
 
