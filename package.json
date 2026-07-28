@@ -1,0 +1,28 @@
+{
+  "name": "echo-dictation",
+  "version": "0.2.1",
+  "private": true,
+  "description": "Private, offline voice dictation for Windows and macOS.",
+  "author": "Echo",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.main.json && tsc -p tsconfig.renderer.json --noEmit && node scripts/copy-static.mjs && node scripts/build-renderers.mjs",
+    "dev": "npm run build && electron .",
+    "start": "electron .",
+    "dist": "npm run build && electron-builder --config electron-builder.yml",
+    "typecheck": "tsc -p tsconfig.main.json --noEmit && tsc -p tsconfig.renderer.json --noEmit",
+    "test": "npm run build && node --test tests/*.test.cjs"
+  },
+  "dependencies": {
+    "extract-zip": "^2.0.1",
+    "motion": "^12.23.12",
+    "uiohook-napi": "^1.5.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "electron": "^37.2.3",
+    "electron-builder": "^26.0.12",
+    "esbuild": "^0.25.8",
+    "typescript": "^5.8.3"
+  }
+}

@@ -1,0 +1,14 @@
+node_modules/
+dist/
+release/
+outputs/
+work/
+.agents/
+.codex/
+*.log
+*.blockmap
+.DS_Store
+resources/bin/**/whisper-cli*
+resources/models/*.bin
+!resources/bin/**/.gitkeep
+!resources/models/.gitkeep

@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; media-src 'self' blob:; connect-src 'self'" />
+    <title>Echo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand"><span class="brand-mark"><i></i><i></i><i></i></span><strong>Echo</strong></div>
+        <nav aria-label="Primary navigation">
+          <button class="nav-item active" data-nav="home"><span>01</span>Home</button>
+          <button class="nav-item" data-nav="dictionary"><span>02</span>Word library</button>
+          <button class="nav-item" data-nav="commands"><span>03</span>Commands</button>
+          <button class="nav-item" data-nav="setup"><span>04</span>Setup</button>
+        </nav>
+        <div class="privacy-card">
+          <span class="privacy-pulse"></span>
+          <div><strong>Private by design</strong><p>Audio stays on this computer.</p></div>
+        </div>
+        <div class="sidebar-footer"><span id="status-dot" data-phase="idle"></span><span id="status-copy">Ready to dictate</span></div>
+      </aside>
+
+      <main>
+        <header class="topbar">
+          <div><p class="eyebrow">ECHO DESKTOP</p><h1 id="section-title">Home</h1></div>
+          <div class="model-pill"><span></span><div><small>LOCAL MODEL</small><strong id="model-status">Setup needed</strong></div></div>
+        </header>
+
+        <section class="page active" data-section="home">
+          <div id="setup-banner" class="setup-banner">
+            <span class="banner-orb">1</span>
+            <div><strong>Let’s get Echo ready</strong><p>One click downloads everything Echo needs. No technical setup.</p></div>
+            <button data-go="setup">Start setup <span>→</span></button>
+          </div>
+          <div id="accessibility-note" class="setup-banner warning hidden">
+            <span class="banner-orb">⌘</span>
+            <div><strong>One Mac permission left</strong><p>Allow Accessibility so Echo can put words wherever your cursor is.</p></div>
+          </div>
+
+          <div class="hero-grid">
+            <article class="dictation-card" data-motion-card>
+              <div class="hero-glow" aria-hidden="true"></div>
+              <div class="card-label"><span class="live-dot"></span>DICTATE IN ANY APP</div>
+              <h2>Your voice,<br /><em>right at the cursor.</em></h2>
+              <p>Leave your cursor in Mail, Notes, Slack, Word—or anywhere else. Echo never steals focus.</p>
+              <div class="shortcut-stage">
+                <div class="shortcut-key" id="shortcut-key">Ctrl+Shift+Space</div>
+                <div><strong id="shortcut-mode">Press to toggle</strong><span>Speak naturally, then release or press again.</span></div>
+              </div>
+              <button class="primary-button" id="test-button"><span class="mic-dot"></span>Test my microphone</button>
+            </article>
+
+            <div class="home-stack">
+              <button class="mini-card" data-go="setup" data-motion-card>
+                <span class="card-icon lilac">◎</span>
+                <div><p>SPEECH ENGINE</p><h3>Runs locally</h3><span id="engine-summary">Private and subscription-free</span></div><b>→</b>
+              </button>
+              <button class="mini-card" data-go="dictionary" data-motion-card>
+                <span class="card-icon peach">Aa</span>
+                <div><p>WORD LIBRARY</p><h3 data-vocab-count>3 words</h3><span>Names and phrases Echo should know</span></div><b>→</b>
+              </button>
+            </div>
+          </div>
+
+          <div class="lower-grid">
+            <article class="transcript-card" data-motion-card>
+              <div class="section-heading"><div><p>LATEST MIC TEST</p><h3>What Echo heard</h3></div><span class="local-badge">ON DEVICE</span></div>
+              <blockquote id="last-transcript">Run a microphone test and your transcript will appear here.</blockquote>
+            </article>
+            <article class="preferences-card" data-motion-card>
+              <div class="section-heading"><div><p>QUICK SETTINGS</p><h3>How Echo behaves</h3></div></div>
+              <label class="toggle-row"><span><strong>Open when I sign in</strong><small>Keep Echo ready in the tray</small></span><input id="launch-login" type="checkbox" /><i></i></label>
+              <label class="toggle-row"><span><strong>Understand commands</strong><small>“New paragraph”, “clear all”, and more</small></span><input data-voice-commands type="checkbox" /><i></i></label>
+            </article>
+          </div>
+        </section>
+
+        <section class="page" data-section="dictionary">
+          <div class="page-intro">
+            <div><p class="eyebrow">PERSONAL VOCABULARY</p><h2>Help Echo get the tricky words right.</h2><p>Add people, company names, abbreviations, and technical terms. Everything stays local.</p></div>
+            <div class="visual-glyph">Aa<span></span></div>
+          </div>
+          <form id="vocab-form" class="add-word-form"><label for="vocab-input">Word or phrase</label><div><input id="vocab-input" autocomplete="off" placeholder="Try “Aditi” or “Acme Corporation”" /><button type="submit">Add word</button></div></form>
+          <article class="library-panel"><div class="section-heading"><div><p>YOUR LIBRARY</p><h3>Words Echo knows</h3></div><span data-vocab-count>0 words</span></div><div id="vocab-list" class="chip-cloud"></div><p class="empty-hint">Click any word to remove it.</p></article>
+        </section>
+
+        <section class="page" data-section="commands">
+          <div class="page-intro compact"><div><p class="eyebrow">SPOKEN SHORTCUTS</p><h2>Say it. Echo handles it.</h2><p>Use these exact phrases while dictating. The words won’t be typed; the action happens instead.</p></div><label class="big-toggle"><input data-voice-commands type="checkbox" /><i></i><span>Commands on</span></label></div>
+          <div class="command-grid">
+            <article data-motion-card><span>01</span><div><p>SAY</p><h3>“new paragraph”</h3><small>Adds a blank line.</small></div><b>↵</b></article>
+            <article data-motion-card><span>02</span><div><p>SAY</p><h3>“new line”</h3><small>Moves down one line.</small></div><b>↓</b></article>
+            <article data-motion-card><span>03</span><div><p>SAY</p><h3>“delete that”</h3><small>Undoes the previous insertion.</small></div><b>⌫</b></article>
+            <article data-motion-card><span>04</span><div><p>SAY</p><h3>“clear all”</h3><small>Selects and deletes all text.</small></div><b>⌘A</b></article>
+            <article data-motion-card><span>05</span><div><p>SAY</p><h3>“period” / “comma”</h3><small>Adds punctuation.</small></div><b>.,</b></article>
+            <article data-motion-card><span>06</span><div><p>SAY</p><h3>“question mark”</h3><small>Ends with a question.</small></div><b>?</b></article>
+          </div>
+        </section>
+
+        <section class="page" data-section="setup">
+          <div class="setup-assistant" data-motion-card>
+            <div class="setup-art" aria-hidden="true"><span></span><span></span><span></span><i>e</i></div>
+            <div class="setup-content">
+              <span class="soft-badge">ONE-TIME SETUP · ABOUT 156 MB</span>
+              <h2 id="setup-title">Let Echo set itself up.</h2>
+              <p id="setup-description">Echo will download a trusted speech engine and an English model. When it finishes, you can disconnect from the internet forever.</p>
+              <div class="plain-steps">
+                <div data-setup-step="runtime"><b>1</b><span><strong>Speech engine</strong><small>Turns the recording into words</small></span><i>8 MB</i></div>
+                <div data-setup-step="model"><b>2</b><span><strong>English model</strong><small>Understands what you say</small></span><i>148 MB</i></div>
+                <div data-setup-step="ready"><b>3</b><span><strong>You’re ready</strong><small>Everything works offline</small></span><i>Free</i></div>
+              </div>
+              <button id="auto-setup" class="setup-button"><span>Set up Echo for me</span><b>→</b></button>
+              <div id="setup-progress" class="setup-progress hidden" aria-live="polite">
+                <div><strong id="setup-progress-label">Starting…</strong><span id="setup-progress-detail"></span></div>
+                <i><b id="setup-progress-bar"></b></i>
+              </div>
+              <p class="reassurance"><span>✓</span>No account, subscription, or API key.</p>
+            </div>
+          </div>
+
+          <section class="activation-panel" data-motion-card>
+            <div class="activation-heading"><div><p class="eyebrow">ACTIVATION</p><h3>Choose how Echo starts listening.</h3><span>You can change this whenever you want.</span></div><span class="activation-wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span></div>
+            <div class="activation-grid">
+              <div class="shortcut-picker">
+                <label>Keyboard shortcut</label>
+                <button type="button" data-shortcut-capture><span>Ctrl+Shift+Space</span><b>Change</b></button>
+                <small id="shortcut-help">Use a key combination, or an F-key such as F8.</small>
+              </div>
+              <div class="mode-picker">
+                <label>What should the shortcut do?</label>
+                <div>
+                  <button type="button" data-shortcut-mode-value="hold" aria-pressed="false"><b>Hold to talk</b><span>Hold the shortcut, speak, then let go.</span><i></i></button>
+                  <button type="button" data-shortcut-mode-value="toggle" aria-pressed="false"><b>Press to start / stop</b><span>Press once, speak, then press again.</span><i></i></button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <details class="advanced-setup">
+            <summary><span>Advanced or offline setup</span><small>Choose files yourself and adjust performance</small><b>+</b></summary>
+            <div class="advanced-body">
+              <div class="setup-grid">
+                <article class="setup-step"><span class="step-number">01</span><div class="step-copy"><p>SPEECH ENGINE</p><h3>whisper-cli</h3><span id="binary-path">Not selected</span></div><button id="choose-binary">Choose file</button></article>
+                <article class="setup-step"><span class="step-number">02</span><div class="step-copy"><p>LANGUAGE MODEL</p><h3>Whisper .bin model</h3><span id="model-path">Not selected</span></div><button id="choose-model">Choose file</button></article>
+              </div>
+              <div class="settings-strip compact-settings">
+                <label><span>Language</span><select id="language"><option value="auto">Detect automatically</option><option value="en">English</option><option value="es">Spanish</option><option value="fr">French</option><option value="de">German</option><option value="hi">Hindi</option></select></label>
+                <label><span>CPU threads</span><input id="threads" type="number" min="1" max="32" /></label>
+              </div>
+            </div>
+          </details>
+        </section>
+      </main>
+    </div>
+    <script src="renderer.js"></script>
+  </body>
+</html>

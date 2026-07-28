@@ -1,0 +1,32 @@
+appId: com.echo.dictation
+productName: Echo
+asar: true
+npmRebuild: false
+directories:
+  output: release
+files:
+  - dist/**/*
+  - package.json
+mac:
+  icon: build/icon.png
+  category: public.app-category.productivity
+  target:
+    - dmg
+    - zip
+  hardenedRuntime: true
+  extendInfo:
+    NSMicrophoneUsageDescription: Echo uses the microphone only while you dictate. Audio stays on this device.
+  extraResources:
+    - from: resources/bin/darwin/${arch}
+      to: bin
+win:
+  icon: build/icon.ico
+  target:
+    - nsis
+  artifactName: Echo-${version}-${arch}.${ext}
+  extraResources:
+    - from: resources/bin/win32/${arch}
+      to: bin
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true

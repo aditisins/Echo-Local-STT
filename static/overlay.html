@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; media-src 'self' blob:" />
+    <link rel="stylesheet" href="overlay.css" />
+    <title>Echo dictation</title>
+  </head>
+  <body>
+    <div id="overlay-pill" class="overlay-pill" data-phase="idle">
+      <span class="echo-orb"><i></i></span>
+      <div class="pill-copy"><strong id="overlay-label">Listening…</strong><span>Release shortcut when you’re done</span></div>
+      <div class="meter" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <span class="phase-mark">✓</span>
+    </div>
+    <script type="module" src="overlay.js"></script>
+  </body>
+</html>
